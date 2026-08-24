@@ -126,7 +126,7 @@
                         <h3 class="text-xl font-bold text-white mb-2">Institutional Market Reports</h3>
                         <p class="text-sm text-slate-400 leading-relaxed mb-6">For macro investors. Weekly deep-dives into liquidity metrics, institutional options flow, and high-probability algorithmic setups delivered to your inbox.</p>
                     </div>
-                    <a href="#" class="w-full text-center bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-xl text-sm transition-colors mt-4 block">
+                    <a href="#contact" class="w-full text-center bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-xl text-sm transition-colors mt-4 block">
                         Subscribe ($49/mo)
                     </a>
                 </div>
@@ -138,7 +138,7 @@
                         <h3 class="text-xl font-bold text-white mb-2">The Trading Room</h3>
                         <p class="text-sm text-slate-400 leading-relaxed mb-6">For active, disciplined day traders. Real-time institutional data feeds, daily pre-market preparation briefs, and a network focused entirely on objective metrics.</p>
                     </div>
-                    <a href="#" class="w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-medium py-3 rounded-xl text-sm transition-colors mt-4 block">
+                    <a href="#contact" class="w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-medium py-3 rounded-xl text-sm transition-colors mt-4 block">
                         Join Community Hub
                     </a>
                 </div>
@@ -199,6 +199,9 @@
                     <form class="text-left space-y-4 bg-[#111625] border border-slate-800/80 p-6 md:p-8 rounded-2xl h-full" action="https://api.web3forms.com/submit" method="POST">
                         <input type="hidden" name="access_key" value="2dbbfff6-aacf-45fc-b101-d65044ba0658">
                         <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                        
+                        <!-- Redirects user to your receipt page after submission -->
+                        <input type="hidden" name="redirect" value="https://cloudball-lab026.github.io/trading-consultancy_SOURAV2.0/success.html">
 
                         <div>
                             <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Your Name</label>
@@ -208,12 +211,31 @@
                             <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Email Address</label>
                             <input type="email" name="email" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition-colors">
                         </div>
+
+                        <!-- Dropdown for the 3 Services -->
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Select Service</label>
+                            <select name="selected_service" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-slate-300 text-sm outline-none transition-colors">
+                                <option value="" disabled selected>Choose a consulting framework...</option>
+                                <option value="1-on-1 Private Mentorship">1-on-1 Private Mentorship</option>
+                                <option value="Institutional Market Reports">Institutional Market Reports ($49/mo)</option>
+                                <option value="The Trading Room">The Trading Room</option>
+                            </select>
+                        </div>
+
                         <div>
                             <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Primary Asset Class & Capital Size</label>
                             <input type="text" name="asset_class_and_capital" placeholder="e.g., Options / $50k" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-slate-300 text-sm outline-none transition-colors">
                         </div>
+
+                        <!-- UPI Transaction ID for verification -->
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">UPI Transaction ID (12-Digit UTR)</label>
+                            <input type="text" name="upi_transaction_id" placeholder="e.g., 312345678901" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-slate-300 text-sm outline-none transition-colors">
+                        </div>
+
                         <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 rounded-xl text-sm transition-all duration-200 shadow-md mt-4">
-                            Submit Application
+                            Submit Application & Verify Payment
                         </button>
                     </form>
                 </div>
