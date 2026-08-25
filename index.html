@@ -24,6 +24,12 @@
                 <a href="#services" class="hover:text-white transition-colors">Services</a>
                 <a href="#proof" class="hover:text-white transition-colors">Track Record</a>
                 <a href="#about" class="hover:text-white transition-colors">About</a>
+                
+                <!-- Client Login Link -->
+                <a href="login.html" class="text-emerald-400 hover:text-emerald-300 font-semibold transition-colors flex items-center gap-1.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
+                    Client Login
+                </a>
             </nav>
             <a href="#contact" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold px-5 py-2.5 rounded-lg text-sm transition-all duration-200 glow-effect">
                 Book Evaluation
@@ -188,6 +194,10 @@
                         <!-- Redirects user to your receipt page after submission -->
                         <input type="hidden" name="redirect" value="https://cloudball-lab026.github.io/trading-consultancy_SOURAV2.0/success.html">
 
+                        <!-- Hidden fields to pass Receipt No and Status to Web3Forms dashboard/email -->
+                        <input type="hidden" id="formReceiptNo" name="Receipt_No">
+                        <input type="hidden" id="formStatus" name="Payment_Status" value="Pending Verification">
+
                         <div>
                             <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Your Name</label>
                             <input type="text" id="clientName" name="name" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition-colors">
@@ -259,8 +269,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript to temporarily save form data + generate unique ID -->
-<!-- JavaScript to temporarily save form data + generate unique ID & Timestamp -->
+    <!-- JavaScript to save form data, generate unique ID, and populate hidden fields -->
     <script>
         function saveReceiptData() {
             const name = document.getElementById('clientName').value;
@@ -271,6 +280,9 @@
             // Generate a random 6-character receipt ID (e.g. INV-A1B2C3)
             const appID = 'INV-' + Math.random().toString(36).substring(2, 8).toUpperCase();
             
+            // Populate hidden input so Web3Forms captures it
+            document.getElementById('formReceiptNo').value = appID;
+
             // Generate Exact Timestamp
             const now = new Date();
             const timestamp = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) + ' at ' + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
