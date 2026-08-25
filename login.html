@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Portal Login | SOURAV SARKAR</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Include Supabase Client SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         body { background-color: #0B0F19; }
         .glow-effect { box-shadow: 0 0 20px rgba(16, 185, 129, 0.2); }
@@ -24,47 +26,123 @@
         </div>
     </header>
 
-    <!-- Login Container -->
+    <!-- Login / Status Lookup Container -->
     <main class="flex-1 flex items-center justify-center p-6 relative">
-        <!-- Ambient Background Glow -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/10 blur-[100px] rounded-full pointer-events-none"></div>
 
         <div class="max-w-md w-full bg-[#111625] border border-slate-800/80 p-8 md:p-10 rounded-2xl shadow-2xl relative z-10">
             
-            <div class="text-center mb-8">
-                <h1 class="text-2xl font-bold text-white tracking-tight mb-2">Client Portal</h1>
-                <p class="text-sm text-slate-400">Enter your credentials to check your application status and access institutional reports.</p>
+            <div id="login-form-container">
+                <div class="text-center mb-8">
+                    <h1 class="text-2xl font-bold text-white tracking-tight mb-2">Client Portal</h1>
+                    <p class="text-sm text-slate-400">Enter your email and Receipt ID to check your live application status.</p>
+                </div>
+
+                <form id="statusForm" class="space-y-5" onsubmit="checkApplicationStatus(event)">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Email Address</label>
+                        <input type="email" id="loginEmail" required placeholder="client@example.com" class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition-colors">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Receipt ID / App ID</label>
+                        <input type="text" id="loginAppID" required placeholder="e.g., INV-A1B2C3" class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition-colors uppercase">
+                    </div>
+
+                    <button type="submit" id="loginBtn" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 rounded-xl text-sm transition-all duration-200 shadow-md mt-2 glow-effect">
+                        Check Status
+                    </button>
+                    <p id="error-msg" class="text-red-400 text-xs text-center mt-2 hidden"></p>
+                </form>
             </div>
 
-            <!-- Login Form (Currently a static mockup) -->
-            <form class="space-y-5" onsubmit="event.preventDefault(); alert('Backend database connection required to authenticate users.');">
-                
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Email Address</label>
-                    <input type="email" required placeholder="client@example.com" class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition-colors">
+            <!-- Dashboard Results View (Hidden by default until search succeeds) -->
+            <div id="dashboard-view" class="hidden">
+                <div class="text-center mb-6">
+                    <h2 class="text-xl font-bold text-white mb-1">Application Status</h2>
+                    <p class="text-xs text-emerald-400 font-mono" id="res-id">-</p>
                 </div>
 
-                <div>
-                    <div class="flex items-center justify-between mb-2">
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400">Application ID / Password</label>
-                        <a href="#" class="text-xs text-emerald-400 hover:text-emerald-300">Forgot ID?</a>
+                <div class="bg-[#0B0F19] border border-slate-800 p-5 rounded-xl space-y-3 text-sm mb-6">
+                    <div class="flex justify-between border-b border-slate-800 pb-2">
+                        <span class="text-slate-500">Client Name:</span>
+                        <span class="font-medium text-white" id="res-name">-</span>
                     </div>
-                    <input type="password" required placeholder="e.g., INV-A1B2C3" class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition-colors">
+                    <div class="flex justify-between border-b border-slate-800 pb-2">
+                        <span class="text-slate-500">Service:</span>
+                        <span class="font-medium text-white text-right max-w-[60%]" id="res-service">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-slate-800 pb-2">
+                        <span class="text-slate-500">UTR Number:</span>
+                        <span class="font-mono text-white" id="res-utr">-</span>
+                    </div>
+                    <div class="flex justify-between pt-1">
+                        <span class="text-slate-500">Current Status:</span>
+                        <span class="font-bold text-amber-500" id="res-status">-</span>
+                    </div>
                 </div>
 
-                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 rounded-xl text-sm transition-all duration-200 shadow-md mt-2 glow-effect">
-                    Access Dashboard
+                <button onclick="location.reload()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-medium py-3 rounded-xl text-sm transition-colors">
+                    Back to Lookup
                 </button>
-
-            </form>
+            </div>
 
             <div class="mt-8 pt-6 border-t border-slate-800 text-center">
                 <p class="text-xs text-slate-500">
-                    Don't have an account? <a href="index.html#contact" class="text-emerald-400 hover:text-emerald-300 font-medium">Apply for a consultation</a>
+                    Need help? <a href="index.html#contact" class="text-emerald-400 hover:text-emerald-300 font-medium">Contact Support</a>
                 </p>
             </div>
         </div>
     </main>
 
+    <!-- Supabase Database Lookup Script -->
+    <script>
+        const SUPABASE_URL = 'https://umdbsuocfchnxjmdywrw.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_5xuzm2oapdHtlCYdzpE-1g_RNqNgWp5';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        async function checkApplicationStatus(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const appID = document.getElementById('loginAppID').value.trim().toUpperCase();
+            const btn = document.getElementById('loginBtn');
+            const errorMsg = document.getElementById('error-msg');
+
+            btn.innerText = "Searching Database...";
+            errorMsg.classList.add('hidden');
+
+            // Query Supabase table for matching record
+            const { data, error } = await supabaseClient
+                .from('applications')
+                .select('*')
+                .eq('email', email)
+                .eq('app_id', appID)
+                .single();
+
+            btn.innerText = "Check Status";
+
+            if (error || !data) {
+                errorMsg.innerText = "No matching application found. Check your email and Receipt ID.";
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+
+            // Populate dashboard view with live data from Supabase
+            document.getElementById('res-id').innerText = data.app_id;
+            document.getElementById('res-name').innerText = data.name;
+            document.getElementById('res-service').innerText = data.service;
+            document.getElementById('res-utr').innerText = data.utr;
+            
+            const statusEl = document.getElementById('res-status');
+            statusEl.innerText = data.status;
+            if(data.status === 'Approved') {
+                statusEl.className = "font-bold text-emerald-400";
+            }
+
+            // Switch views
+            document.getElementById('login-form-container').classList.add('hidden');
+            document.getElementById('dashboard-view').classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
