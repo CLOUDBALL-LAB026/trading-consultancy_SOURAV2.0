@@ -80,7 +80,6 @@
 
     <!-- JavaScript to load the saved form data onto the receipt -->
     <script>
-        // Pull data from browser memory (localStorage)
         const savedName = localStorage.getItem('savedName');
         const savedEmail = localStorage.getItem('savedEmail');
         const savedService = localStorage.getItem('savedService');
@@ -88,10 +87,8 @@
         const savedAppID = localStorage.getItem('savedAppID');
         const savedTimestamp = localStorage.getItem('savedTimestamp');
         
-        // Fallback for timestamp if missing
         const fallbackTime = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) + ' at ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
 
-        // If the data exists, display it.
         document.getElementById('display-id').innerText = savedAppID ? savedAppID : "N/A";
         document.getElementById('display-name').innerText = savedName ? savedName : "Not Provided";
         document.getElementById('display-email').innerText = savedEmail ? savedEmail : "Not Provided";
