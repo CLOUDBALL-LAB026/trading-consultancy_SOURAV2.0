@@ -1,282 +1,65 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOURAV SARKAR | Institutional Trading Consultancy</title>
-    <!-- Tailwind CSS CDN - This is what makes the styling work! -->
+    <title>Application Received | SOURAV SARKAR</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        /* Custom premium dark background */
-        body {
-            background-color: #0B0F19;
-        }
-        /* Neon growth accent glow effect */
-        .glow-effect {
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+        body { background-color: #0B0F19; }
+        /* This makes the receipt look clean and white when downloaded as a PDF */
+        @media print {
+            body { background-color: white !important; color: black !important; }
+            .no-print { display: none !important; }
+            .print-text-black { color: black !important; }
+            .print-border { border-color: #e2e8f0 !important; }
         }
     </style>
 </head>
-<body class="text-slate-200 font-sans antialiased selection:bg-emerald-500 selection:text-black">
+<body class="text-slate-200 font-sans antialiased min-h-screen flex items-center justify-center p-6">
 
-    <!-- Header / Navigation -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-[#0B0F19]/80 border-b border-slate-800/60">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="text-xl font-bold tracking-tight text-white">
-                SOURAV<span class="text-emerald-400 font-light">SARKAR</span>
-            </a>
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
-                <a href="#philosophy" class="hover:text-white transition-colors">Philosophy</a>
-                <a href="#services" class="hover:text-white transition-colors">Services</a>
-                <a href="#proof" class="hover:text-white transition-colors">Track Record</a>
-                <a href="#about" class="hover:text-white transition-colors">About</a>
-            </nav>
-            <a href="#contact" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold px-5 py-2.5 rounded-lg text-sm transition-all duration-200 glow-effect">
-                Book Evaluation
-            </a>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden">
-        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
-            <!-- Subtle Badge -->
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-6">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Institutional-Grade Capital Management
-            </span>
-            
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.15]">
-                Mastering the Markets Through <br class="hidden md:inline">
-                <span class="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">Data, Not Hype.</span>
-            </h1>
-            
-            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-                High-probability options and macro-trading strategies tailored for serious capital growth. No signal groups. No lifestyle flexing. Just mathematics and strict risk management.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#contact" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-8 py-4 rounded-xl text-base transition-all duration-200 shadow-lg shadow-emerald-500/10">
-                    Book a Strategy Evaluation
-                </a>
-                <a href="#proof" class="w-full sm:w-auto bg-slate-800/80 hover:bg-slate-800 text-white border border-slate-700 font-semibold px-8 py-4 rounded-xl text-base transition-all duration-200">
-                    View Verified Track Record
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Credibility Strip -->
-    <section class="border-y border-slate-800/60 bg-slate-900/30 py-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <p class="text-center text-xs font-semibold tracking-widest text-slate-500 uppercase mb-8">Data Metrics & Experience</p>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-                <div class="space-y-1">
-                    <p class="text-3xl md:text-4xl font-bold text-white tracking-tight">10+ Years</p>
-                    <p class="text-sm text-slate-400">Active Market Experience</p>
-                </div>
-                <div class="space-y-1 border-y sm:border-y-0 sm:border-x border-slate-800 py-6 sm:py-0">
-                    <p class="text-3xl md:text-4xl font-bold text-emerald-400 tracking-tight">$4.2M+</p>
-                    <p class="text-sm text-slate-400">Funded Capital Managed</p>
-                </div>
-                <div class="space-y-1">
-                    <p class="text-3xl md:text-4xl font-bold text-white tracking-tight">84%</p>
-                    <p class="text-sm text-slate-400">Student Retention Rate</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Philosophy / Problem-Solution -->
-    <section id="philosophy" class="py-20 md:py-28 max-w-4xl mx-auto px-6 text-center">
-        <blockquote class="text-2xl md:text-3xl italic font-medium text-slate-100 mb-8 leading-relaxed">
-            "Most traders don't fail because of their entry strategy. They fail because of their structural risk management."
-        </blockquote>
-        <div class="h-px w-20 bg-emerald-500/50 mx-auto mb-10"></div>
-        <p class="text-slate-400 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-            The retail trading space is noisy. Copy-trading groups lag, emotional execution ruins accounts, and generic courses fail to prepare you for shifting market liquidity. We treat trading entirely like a quantitative business.
-        </p>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-slate-900/20 border-t border-slate-800/40">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl font-bold text-white tracking-tight mb-4">Consulting Services & Frameworks</h2>
-                <p class="text-slate-400">Choose the level of execution that aligns with your capital structure.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="bg-[#111625] border border-slate-800/80 p-8 rounded-2xl flex flex-col justify-between">
-                    <div>
-                        <div class="text-emerald-400 text-2xl mb-4">📈</div>
-                        <h3 class="text-xl font-bold text-white mb-2">1-on-1 Private Mentorship</h3>
-                        <p class="text-sm text-slate-400 leading-relaxed mb-6">A rigorous 12-week intensive program. We fix your specific leaks, optimize your custom playbook, and perform live data-driven trade reviews weekly.</p>
-                    </div>
-                    <a href="#contact" class="w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-medium py-3 rounded-xl text-sm transition-colors mt-4 block">
-                        Apply For Mentorship
-                    </a>
-                </div>
-
-                <!-- Service 2 (Featured Tier) -->
-                <div class="bg-[#111625] border-2 border-emerald-500/40 p-8 rounded-2xl flex flex-col justify-between relative glow-effect">
-                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 font-bold text-[10px] uppercase tracking-widest px-3 py-1 rounded-full">Most Requested</span>
-                    <div>
-                        <div class="text-emerald-400 text-2xl mb-4">📊</div>
-                        <h3 class="text-xl font-bold text-white mb-2">Institutional Market Reports</h3>
-                        <p class="text-sm text-slate-400 leading-relaxed mb-6">For macro investors. Weekly deep-dives into liquidity metrics, institutional options flow, and high-probability algorithmic setups delivered to your inbox.</p>
-                    </div>
-                    <a href="#contact" class="w-full text-center bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-xl text-sm transition-colors mt-4 block">
-                        Subscribe ($49/mo)
-                    </a>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="bg-[#111625] border border-slate-800/80 p-8 rounded-2xl flex flex-col justify-between">
-                    <div>
-                        <div class="text-emerald-400 text-2xl mb-4">👥</div>
-                        <h3 class="text-xl font-bold text-white mb-2">The Trading Room</h3>
-                        <p class="text-sm text-slate-400 leading-relaxed mb-6">For active, disciplined day traders. Real-time institutional data feeds, daily pre-market preparation briefs, and a network focused entirely on objective metrics.</p>
-                    </div>
-                    <a href="#contact" class="w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-medium py-3 rounded-xl text-sm transition-colors mt-4 block">
-                        Join Community Hub
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Verified Proof Section -->
-    <section id="proof" class="py-20 md:py-28 max-w-7xl mx-auto px-6">
-        <div class="text-center max-w-3xl mx-auto mb-12">
-            <h2 class="text-3xl font-bold text-white tracking-tight mb-4">Uncompromising Transparency</h2>
-            <p class="text-slate-400">In a space full of edited screenshots, our audited performance metrics stand on absolute objective truth.</p>
-        </div>
+    <div class="max-w-xl w-full bg-[#111625] border border-slate-800 p-8 md:p-12 rounded-2xl shadow-2xl print-border text-center">
         
-        <div class="bg-[#111625] border border-slate-800 rounded-2xl p-6 md:p-12 flex flex-col items-center justify-center text-center min-h-[300px]">
-            <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-4 font-mono font-bold">✓</div>
-            <p class="text-white font-semibold text-lg mb-2">Audited Track Record Logs Connected</p>
-            <p class="text-sm text-slate-400 max-w-md">Integrations from MyFxBook and verified Brokerage Statements are loaded dynamically during active trading months.</p>
+        <div class="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-6 no-print">
+            <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
         </div>
-    </section>
 
-    <!-- Meet Your Mentor / About Section -->
-    <section id="about" class="py-20 border-t border-slate-800/60 bg-slate-900/10">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="relative group aspect-square rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
-                <!-- Ambient Neon Border Glow Effect -->
-                <div class="absolute -inset-1.5 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
-                <!-- Profile Image Reference Layer -->
-                <img src="KUTU.png" alt="Sourav Sarkar" class="relative z-10 w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition-all duration-500">
-            </div>
-
-            <div class="space-y-6">
-                <h2 class="text-3xl font-bold text-white tracking-tight">Meet Your Lead Consultant</h2>
-                <h3 class="text-lg font-medium text-emerald-400">SOURAV SARKAR</h3>
-                <p class="text-slate-400 leading-relaxed">
-                    I spent the first four years of my trading career making every mistake in the documentation—over-leveraging, revenge execution, and dealing with catastrophic drawdowns. It wasn't until I stripped away complex lagging indicators and focused purely on risk-to-reward metrics that everything evolved.
-                </p>
-                <p class="text-slate-400 leading-relaxed">
-                    Today, I manage private risk capital and structure professional, math-based playbooks for independent traders looking to scale cleanly away from generic market retail noise. 
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA / Contact & Payment Section -->
-    <section id="contact" class="py-20 md:py-28 border-t border-slate-800/60 bg-gradient-to-b from-[#0B0F19] to-[#070a11]">
-        <div class="max-w-5xl mx-auto px-6">
-            
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">Apply & Secure Your Slot</h2>
-                <p class="text-slate-400">Submit your portfolio diagnostics application and secure your evaluation slot via priority UPI routing.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
-                
-                <!-- Column 1: Application Form -->
-                <div class="md:col-span-3">
-                    <form class="text-left space-y-4 bg-[#111625] border border-slate-800/80 p-6 md:p-8 rounded-2xl h-full" action="https://api.web3forms.com/submit" method="POST">
-                        <input type="hidden" name="access_key" value="2dbbfff6-aacf-45fc-b101-d65044ba0658">
-                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-                        
-                        <!-- Redirects user to your receipt page after submission -->
-                        <input type="hidden" name="redirect" value="https://cloudball-lab026.github.io/trading-consultancy_SOURAV2.0/success.html">
-
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Your Name</label>
-                            <input type="text" name="name" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition-colors">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Email Address</label>
-                            <input type="email" name="email" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition-colors">
-                        </div>
-
-                        <!-- Dropdown for the 3 Services -->
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Select Service</label>
-                            <select name="selected_service" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-slate-300 text-sm outline-none transition-colors">
-                                <option value="" disabled selected>Choose a consulting framework...</option>
-                                <option value="1-on-1 Private Mentorship">1-on-1 Private Mentorship</option>
-                                <option value="Institutional Market Reports">Institutional Market Reports ($49/mo)</option>
-                                <option value="The Trading Room">The Trading Room</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Primary Asset Class & Capital Size</label>
-                            <input type="text" name="asset_class_and_capital" placeholder="e.g., Options / $50k" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-slate-300 text-sm outline-none transition-colors">
-                        </div>
-
-                        <!-- UPI Transaction ID for verification -->
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">UPI Transaction ID (12-Digit UTR)</label>
-                            <input type="text" name="upi_transaction_id" placeholder="e.g., 312345678901" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-slate-300 text-sm outline-none transition-colors">
-                        </div>
-
-                        <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 rounded-xl text-sm transition-all duration-200 shadow-md mt-4">
-                            Submit Application & Verify Payment
-                        </button>
-                    </form>
+        <h1 class="text-3xl font-bold text-white mb-2 print-text-black">Application Received</h1>
+        <p class="text-slate-400 mb-8 print-text-black">Your transaction ID has been submitted for manual verification. Our team will contact you within 24 hours.</p>
+        
+        <!-- Receipt Details -->
+        <div class="text-left bg-[#0B0F19] border border-slate-800 p-6 rounded-xl mb-8 print-border">
+            <h2 class="text-sm font-bold tracking-widest text-emerald-400 uppercase mb-4 print-text-black">Provisional Receipt</h2>
+            <div class="space-y-3 text-sm">
+                <div class="flex justify-between border-b border-slate-800 pb-2 print-border">
+                    <span class="text-slate-500 print-text-black">Payee:</span>
+                    <span class="font-medium text-white print-text-black">SOURAV SARKAR Consulting</span>
                 </div>
-
-                <!-- Column 2: UPI & QR Code -->
-                <div class="md:col-span-2 bg-[#111625] border border-slate-800/80 p-6 md:p-8 rounded-2xl flex flex-col items-center justify-center text-center h-full relative overflow-hidden group">
-                    <!-- Ambient Glow -->
-                    <div class="absolute -inset-2 bg-emerald-500/10 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                    
-                    <h3 class="text-lg font-bold text-white mb-2">Direct UPI Payment</h3>
-                    <p class="text-xs text-slate-400 mb-6 px-4">Scan the QR code below using any UPI app (GPay, PhonePe, Paytm).</p>
-                    
-                    <!-- QR Code Container -->
-                    <div class="bg-white p-3 rounded-xl mb-6 shadow-lg relative z-10">
-                        <!-- IMPORTANT: Ensure 'KUTU_QR Code.jpeg' is in the same folder as this HTML file -->
-                        <img src="KUTU_QR Code.jpeg" alt="Sourav Sarkar UPI QR Code" class="w-48 h-48 object-cover rounded-lg">
-                    </div>
-
-                    <!-- Copyable UPI ID Box -->
-                    <div class="w-full bg-[#0B0F19] border border-slate-800 rounded-lg p-1.5 flex items-center justify-between relative z-10">
-                        <span class="text-sm font-mono text-slate-300 pl-3 select-all">sourav.sarkar@upi</span>
-                        
-                        <button onclick="navigator.clipboard.writeText('sourav.sarkar@upi'); this.innerText='COPIED!'; setTimeout(() => this.innerText='COPY', 2000);" class="text-emerald-400 hover:text-emerald-300 text-xs font-semibold px-3 py-2 bg-emerald-500/10 rounded transition-colors cursor-pointer">
-                            COPY
-                        </button>
-                    </div>
+                <div class="flex justify-between border-b border-slate-800 pb-2 print-border">
+                    <span class="text-slate-500 print-text-black">Date:</span>
+                    <span class="font-medium text-white print-text-black" id="date"></span>
                 </div>
-
+                <div class="flex justify-between pt-1">
+                    <span class="text-slate-500 print-text-black">Status:</span>
+                    <span class="font-medium text-emerald-400 print-text-black">Pending Verification</span>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-900 bg-[#070a11] py-12 text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-            <p>&copy; 2026 SOURAV SARKAR Consulting. All Rights Reserved.</p>
-            <p class="max-w-md md:text-right leading-relaxed text-[11px] text-slate-600">
-                Risk Disclaimer: Trading financial instruments involves high structural risk. Past market performance metrics are never directly indicative of future investment returns.
-            </p>
+        <!-- Action Buttons (Hidden when printed/downloaded) -->
+        <div class="space-y-4 no-print">
+            <button onclick="window.print()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 rounded-xl text-sm transition-all shadow-md">
+                Download / Print Receipt
+            </button>
+            <a href="index.html" class="block w-full bg-slate-800 hover:bg-slate-700 text-white font-medium py-3.5 rounded-xl text-sm transition-all text-center">
+                Return to Homepage
+            </a>
         </div>
-    </footer>
+    </div>
 
+    <script>
+        // Automatically injects today's date into the receipt
+        document.getElementById('date').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    </script>
 </body>
 </html>
