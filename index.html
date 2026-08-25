@@ -260,6 +260,7 @@
     </footer>
 
     <!-- JavaScript to temporarily save form data + generate unique ID -->
+<!-- JavaScript to temporarily save form data + generate unique ID & Timestamp -->
     <script>
         function saveReceiptData() {
             const name = document.getElementById('clientName').value;
@@ -270,11 +271,16 @@
             // Generate a random 6-character receipt ID (e.g. INV-A1B2C3)
             const appID = 'INV-' + Math.random().toString(36).substring(2, 8).toUpperCase();
             
+            // Generate Exact Timestamp
+            const now = new Date();
+            const timestamp = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) + ' at ' + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            
             localStorage.setItem('savedName', name);
             localStorage.setItem('savedEmail', email);
             localStorage.setItem('savedService', service);
             localStorage.setItem('savedUTR', utr);
             localStorage.setItem('savedAppID', appID);
+            localStorage.setItem('savedTimestamp', timestamp);
         }
     </script>
 </body>
