@@ -33,12 +33,20 @@
             
             <div class="space-y-4 text-sm">
                 <div class="flex justify-between border-b border-slate-800 pb-3 print-border">
+                    <span class="text-slate-500 print-text-black">Receipt No:</span>
+                    <span class="font-mono text-emerald-400 print-text-black text-right font-bold" id="display-id">-</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-800 pb-3 print-border">
                     <span class="text-slate-500 print-text-black">Payee:</span>
                     <span class="font-bold text-white print-text-black text-right">SOURAV SARKAR Consulting</span>
                 </div>
                 <div class="flex justify-between border-b border-slate-800 pb-3 print-border">
                     <span class="text-slate-500 print-text-black">Client Name:</span>
                     <span class="font-medium text-slate-200 print-text-black text-right" id="display-name">-</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-800 pb-3 print-border">
+                    <span class="text-slate-500 print-text-black">Client Email:</span>
+                    <span class="font-medium text-slate-200 print-text-black text-right max-w-[60%] truncate" id="display-email">-</span>
                 </div>
                 <div class="flex justify-between border-b border-slate-800 pb-3 print-border">
                     <span class="text-slate-500 print-text-black">Service Selected:</span>
@@ -54,7 +62,7 @@
                 </div>
                 <div class="flex justify-between pt-1">
                     <span class="text-slate-500 print-text-black">Status:</span>
-                    <span class="font-bold text-emerald-400 print-text-black text-right">Pending Verification</span>
+                    <span class="font-bold text-amber-500 print-text-black text-right">Pending Verification</span>
                 </div>
             </div>
         </div>
@@ -77,11 +85,15 @@
         
         // Pull data from browser memory (localStorage)
         const savedName = localStorage.getItem('savedName');
+        const savedEmail = localStorage.getItem('savedEmail');
         const savedService = localStorage.getItem('savedService');
         const savedUTR = localStorage.getItem('savedUTR');
+        const savedAppID = localStorage.getItem('savedAppID');
         
-        // If the data exists, display it. If not (e.g. they refreshed the page), show fallback text.
+        // If the data exists, display it.
+        document.getElementById('display-id').innerText = savedAppID ? savedAppID : "N/A";
         document.getElementById('display-name').innerText = savedName ? savedName : "Not Provided";
+        document.getElementById('display-email').innerText = savedEmail ? savedEmail : "Not Provided";
         document.getElementById('display-service').innerText = savedService ? savedService : "Consulting Service";
         document.getElementById('display-utr').innerText = savedUTR ? savedUTR : "Pending";
     </script>
