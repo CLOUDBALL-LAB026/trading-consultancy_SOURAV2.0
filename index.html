@@ -6,6 +6,8 @@
     <title>SOURAV SARKAR | Institutional Trading Consultancy</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Supabase Client SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         body { background-color: #0B0F19; }
         .glow-effect { box-shadow: 0 0 20px rgba(16, 185, 129, 0.2); }
@@ -269,9 +271,13 @@
         </div>
     </footer>
 
-    <!-- JavaScript to save form data, generate unique ID, and populate hidden fields -->
+    <!-- Supabase Integration Script -->
     <script>
-        function saveReceiptData() {
+        const SUPABASE_URL = 'https://umdbsuocfchnxjmdywrw.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_5xuzm2oapdHtlCYdzpE-1g_RNqNgWp5';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        async function saveReceiptData() {
             const name = document.getElementById('clientName').value;
             const email = document.getElementById('clientEmail').value;
             const service = document.getElementById('clientService').value;
@@ -279,14 +285,29 @@
             
             // Generate a random 6-character receipt ID (e.g. INV-A1B2C3)
             const appID = 'INV-' + Math.random().toString(36).substring(2, 8).toUpperCase();
-            
-            // Populate hidden input so Web3Forms captures it
             document.getElementById('formReceiptNo').value = appID;
 
-            // Generate Exact Timestamp
+            // Exact Timestamp
             const now = new Date();
             const timestamp = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) + ' at ' + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
             
+            // 1. Save data to Supabase Database
+            const { error } = await supabaseClient
+                .from('applications')
+                .insert([{ 
+                    name: name, 
+                    email: email, 
+                    service: service, 
+                    utr: utr, 
+                    app_id: appID, 
+                    status: 'Pending Verification' 
+                }]);
+
+            if (error) {
+                console.error('Error saving to Supabase database:', error);
+            }
+
+            // 2. Save locally for the success receipt page backup
             localStorage.setItem('savedName', name);
             localStorage.setItem('savedEmail', email);
             localStorage.setItem('savedService', service);
