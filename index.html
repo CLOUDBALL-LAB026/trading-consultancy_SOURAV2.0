@@ -96,7 +96,6 @@
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
                 <div class="bg-[#111625] border border-slate-800/80 p-8 rounded-2xl flex flex-col justify-between">
                     <div>
                         <div class="text-emerald-400 text-2xl mb-4">📈</div>
@@ -108,7 +107,6 @@
                     </a>
                 </div>
 
-                <!-- Service 2 (Featured Tier) -->
                 <div class="bg-[#111625] border-2 border-emerald-500/40 p-8 rounded-2xl flex flex-col justify-between relative glow-effect">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 font-bold text-[10px] uppercase tracking-widest px-3 py-1 rounded-full">Most Requested</span>
                     <div>
@@ -121,7 +119,6 @@
                     </a>
                 </div>
 
-                <!-- Service 3 -->
                 <div class="bg-[#111625] border border-slate-800/80 p-8 rounded-2xl flex flex-col justify-between">
                     <div>
                         <div class="text-emerald-400 text-2xl mb-4">👥</div>
@@ -184,7 +181,7 @@
                 
                 <!-- Column 1: Application Form -->
                 <div class="md:col-span-3">
-                    <form class="text-left space-y-4 bg-[#111625] border border-slate-800/80 p-6 md:p-8 rounded-2xl h-full" action="https://api.web3forms.com/submit" method="POST">
+                    <form class="text-left space-y-4 bg-[#111625] border border-slate-800/80 p-6 md:p-8 rounded-2xl h-full" action="https://api.web3forms.com/submit" method="POST" onsubmit="saveReceiptData()">
                         <input type="hidden" name="access_key" value="2dbbfff6-aacf-45fc-b101-d65044ba0658">
                         <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                         
@@ -193,7 +190,7 @@
 
                         <div>
                             <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Your Name</label>
-                            <input type="text" name="name" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition-colors">
+                            <input type="text" id="clientName" name="name" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition-colors">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Email Address</label>
@@ -203,7 +200,7 @@
                         <!-- Dropdown for the 3 Services -->
                         <div>
                             <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Select Service</label>
-                            <select name="selected_service" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-slate-300 text-sm outline-none transition-colors">
+                            <select id="clientService" name="selected_service" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-slate-300 text-sm outline-none transition-colors">
                                 <option value="" disabled selected>Choose a consulting framework...</option>
                                 <option value="1-on-1 Private Mentorship">1-on-1 Private Mentorship</option>
                                 <option value="Institutional Market Reports">Institutional Market Reports ($49/mo)</option>
@@ -219,7 +216,7 @@
                         <!-- UPI Transaction ID for verification -->
                         <div>
                             <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">UPI Transaction ID (12-Digit UTR)</label>
-                            <input type="text" name="upi_transaction_id" placeholder="e.g., 312345678901" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-slate-300 text-sm outline-none transition-colors">
+                            <input type="text" id="clientUTR" name="upi_transaction_id" placeholder="e.g., 312345678901" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-slate-300 text-sm outline-none transition-colors">
                         </div>
 
                         <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 rounded-xl text-sm transition-all duration-200 shadow-md mt-4">
@@ -262,5 +259,17 @@
         </div>
     </footer>
 
+    <!-- JavaScript to temporarily save form data for the receipt page -->
+    <script>
+        function saveReceiptData() {
+            const name = document.getElementById('clientName').value;
+            const service = document.getElementById('clientService').value;
+            const utr = document.getElementById('clientUTR').value;
+            
+            localStorage.setItem('savedName', name);
+            localStorage.setItem('savedService', service);
+            localStorage.setItem('savedUTR', utr);
+        }
+    </script>
 </body>
 </html>
