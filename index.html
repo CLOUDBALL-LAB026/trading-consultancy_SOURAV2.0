@@ -194,7 +194,7 @@
                         </div>
                         <div>
                             <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Email Address</label>
-                            <input type="email" name="email" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition-colors">
+                            <input type="email" id="clientEmail" name="email" required class="w-full bg-[#0B0F19] border border-slate-800 focus:border-emerald-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition-colors">
                         </div>
 
                         <!-- Dropdown for the 3 Services -->
@@ -259,16 +259,22 @@
         </div>
     </footer>
 
-    <!-- JavaScript to temporarily save form data for the receipt page -->
+    <!-- JavaScript to temporarily save form data + generate unique ID -->
     <script>
         function saveReceiptData() {
             const name = document.getElementById('clientName').value;
+            const email = document.getElementById('clientEmail').value;
             const service = document.getElementById('clientService').value;
             const utr = document.getElementById('clientUTR').value;
             
+            // Generate a random 6-character receipt ID (e.g. INV-A1B2C3)
+            const appID = 'INV-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+            
             localStorage.setItem('savedName', name);
+            localStorage.setItem('savedEmail', email);
             localStorage.setItem('savedService', service);
             localStorage.setItem('savedUTR', utr);
+            localStorage.setItem('savedAppID', appID);
         }
     </script>
 </body>
